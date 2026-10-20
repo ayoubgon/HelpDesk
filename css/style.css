@@ -1,3 +1,11 @@
+
+    .item1 {grid-area: item_1;}
+    .item2 {grid-area: item_2;}
+    .item3 {grid-area: item_3;}
+    .item4 {grid-area: item_4;}
+    .item5 {grid-area: item_5;}
+
+
 body {
     padding: 0;
     margin: 0;
@@ -50,9 +58,10 @@ main section {
     border-radius: 7px;
 }
 
-form {
+.form_con {
     display: grid;
     grid-template-columns: 1fr;
+    grid-template-areas: "item_1" "item_2" "item_3" "item_4" "item_5";
     gap: 10px;
 }
 
