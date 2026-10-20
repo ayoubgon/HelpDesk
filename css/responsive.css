@@ -1,36 +1,37 @@
-    .item1 {
-        grid-area: "item_1";
+@media (min-width: 768px) {
+
+    .btn_homeborber {
+        display: none;
     }
 
-    .item2 {
-        grid-area: "item_2";
+    .form_con {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "item_1 item_2"
+            "item_3 item_4"
+            ".      item_5";
+    }
+    .carte_demandes{
+    grid-template-columns: 1fr 1fr;
+}
+
+
+}
+
+@media (min-width: 1024px) {
+
+    .form_con {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas:
+            "item_1 item_2 item_3"
+            "item_4 item_4 item_4"
+            ".      .      item_5";
     }
 
-    .item3 {
-        grid-area: "item_3";
-    }
+        .carte_demandes{
+    grid-template-columns: 1fr 1fr 1fr;
+}
 
-    .item4 {
-        grid-area: "item_4";
-    }
-
-    .item5 {
-        grid-area: "item_5";
-    }
-
-    @media (min-width: 768px) {
-
-        .btn_homeborber {
-            display: none;
-        }
-
-
-        main form {
-            display: grid;
-            grid-template-columns:
-                "item_1 item_2"
-                "item_3 item_4"
-                " . item_5";
-        }
-
-    }
+}

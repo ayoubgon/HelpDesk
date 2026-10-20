@@ -30,32 +30,34 @@
         <section>
             <h2>Créer une demande</h2>
             <p>Décrivez votre problème informatique.</p>
-            <form action="">
+            <form  class="form_con" action="">
                 <div class="item1">
                     <label for="">Titre du problème *</label>
-                    <input class="input_fram" type="text" placeholder="Connexion Wi-Fi instable">
+                    <input id="type_problem" class="input_fram" type="text" placeholder="Connexion Wi-Fi instable">
                 </div>
                 <div class="item2">
                     <label for="">Catégorie *</label>
-                    <select class="input_fram" name="" id="">
-                        <option value="">Matériel</option>
-                        <option value="">Logiciel</option>
-                        <option value="">Réseau</option>
+                    <select id="Catégorie" class="input_fram" name="" id="">
+                        <option value="Matériel">Matériel</option>
+                        <option value="Logiciel">Logiciel</option>
+                        <option value="Réseau">Réseau</option>
                     </select>
                 </div>
                 <div class="item3">
                     <label for="">Priorité *</label>
-                    <select class="input_fram" name="" id="" >
-                        <option value="">Basse</option>
-                        <option value="">Normale</option>
-                        <option value="">Haute</option>
+                    <select id="Priorité" class="input_fram" name="" id="" >
+                        <option value="Basse">Basse</option>
+                        <option value="Normale">Normale</option>
+                        <option value="Haute">Haute</option>
                     </select>
                 </div>
                 <div class="item4">
                     <label for="">Description *</label>
-                    <input class="input_fram_desc" type="text" placeholder="Décrivez votre problème...">
+                    <input id="problem_desc" class="input_fram_desc" type="text" placeholder="Décrivez votre problème...">
                 </div>
-                <button class="item5">＋  Ajouter la demande</button>
+                <div class="item5">
+                    <button id="btn_submit" type="submit" >＋  Ajouter la demande</button>
+                </div>
             </form>
 
         </section>
@@ -63,27 +65,13 @@
     <section class="demandes">
         <div class="title">
             <h2>Liste des demandes</h2>
-            <p>3 demandes</p>
+            <p id="conter">0 demandes</p>
         </div>
-        <div class="carte">
-            <div class="top_carte">
-                <p class="cate_side_icon">⌁</p>
-                <p class="text_side_icon">HD-001</p>
-            </div>
-            <h3 class="type_problem">Connexion Wi-Fi instable</h3>
-            <p class="problem_desc">Le réseau se déconnecte régulièrement.</p>
-            <div class="type_holder">
-                <p class="Catégorie ">Réseau</p>
-                <p class="Priorité ">Haute</p>
-            </div>
-            <hr>
-            <div class="bottm_carte">
-                <a class="modifer_btn" href="">✎ Modifier</a>
-                <a class="supprimer_btn" href="">♜ Supprimer</a>
-            </div>
-        </div>
+        <div id="list_demandes" class="carte_demandes" ></div>
+
     </section>
 
+    <script src="javascript/js.js"></script>
 </body>
 
 </html>
