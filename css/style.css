@@ -101,6 +101,13 @@ form button {
     justify-content: space-between;
     align-items: center;
 }
+
+.carte_demandes{
+    display: grid;
+    gap: 25px;
+    /* margin-bottom: 10px; */
+    grid-template-columns: 1fr;
+}
 .carte{
     display: grid;
     grid-template-columns: 1fr;

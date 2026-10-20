@@ -12,11 +12,16 @@
             "item_3 item_4"
             ".      item_5";
     }
+    .carte_demandes{
+    grid-template-columns: 1fr 1fr;
+}
+
 
 }
+
 @media (min-width: 1024px) {
 
-        .form_con {
+    .form_con {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-areas:
@@ -24,4 +29,9 @@
             "item_4 item_4 item_4"
             ".      .      item_5";
     }
+
+        .carte_demandes{
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
 }
