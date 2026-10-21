@@ -1,0 +1,198 @@
+
+    .item1 {grid-area: item_1;}
+    .item2 {grid-area: item_2;}
+    .item3 {grid-area: item_3;}
+    .item4 {grid-area: item_4;}
+    .item5 {grid-area: item_5;}
+
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #F7F8FA;
+    font-family: "Inter", sans-serif;
+}
+
+
+/* navbar */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+header div {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: larger;
+}
+
+.btn_homeborber {
+    font-size: larger;
+    text-decoration: none;
+}
+
+.logo_nav {
+    background-color: black;
+    width: 30px;
+    height: 40px;
+    color: white;
+    border-radius: 7px;
+    align-items: center;
+    justify-content: end;
+    padding-right: 10px;
+}
+
+/* main */
+
+main {
+    padding: 20px 40px;
+}
+
+main section {
+    color: black;
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 7px;
+}
+
+.form_con {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: "item_1" "item_2" "item_3" "item_4" "item_5";
+    gap: 10px;
+}
+
+main section form div {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 5px;
+}
+
+.input_fram {
+    height: 40px;
+    border-radius: 7px;
+    border: 1px solid black;
+}
+
+.input_fram_desc {
+    height: 55px;
+    border-radius: 7px;
+    border: 1px solid black;
+}
+
+form button {
+    border-radius: 7px;
+    height: 40px;
+    background-color: #252F3E; 
+    color: white;
+}
+
+
+/* demandes */
+
+.demandes{
+    padding: 20px 40px
+}
+.title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.carte_demandes{
+    display: grid;
+    gap: 25px;
+    /* margin-bottom: 10px; */
+    grid-template-columns: 1fr;
+}
+.carte{
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 10px 20px;
+    background-color: white;
+    border-radius: 7px;
+}
+
+.top_carte{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.cate_side_icon{
+    height: 40px;
+    width: 40px;
+    border-radius: 11px;
+    background-color: #EAF0F9 ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.text_side_icon{
+    color: #99A4B2;
+}
+.type_holder{
+    display: flex;
+    gap: 10px;
+}
+.Catégorie{
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+    background-color: #F0F3F7;
+    color: #64748B;
+    width: 83px;
+    height: 24px;
+    font-size: 14px;
+    border-radius: 12px;
+    font-weight:700 ;
+}
+.Priorité{
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+    /* background-color: #FFF0E8; */
+    /* color: #BA6444 ; */
+    width: 83px;
+    height: 24px;
+    font-size: 14px;
+    border-radius: 12px;
+    font-weight:700 ;
+}
+.Basse{
+    background-color: #E8F6EE;
+    color: #388867 ;
+}
+
+.Normale{
+    background-color: #FFF5DF;
+    color: #A67A2B ;
+}
+
+.Haute{
+    background-color: #FFF0E8 ;
+    color: #BA6444 ;
+}
+
+.bottm_carte{
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+    
+}
+.modifer_btn {
+    color: #617084;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+}
+.supprimer_btn {
+    color: #CC626A;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+}

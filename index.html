@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+    <header>
+        <div>
+            <div class="logo_nav">H</div>
+            <span>HelpDesk</span>
+        </div>
+
+        <a class="btn_homeborber" href="">&#9776;</a>
+    </header>
+    <main>
+        <h1>Gestion des demandes</h1>
+        <p>Suivez et gérez les incidents informatiques.</p>
+        <section>
+            <h2>Créer une demande</h2>
+            <p>Décrivez votre problème informatique.</p>
+            <form class="form_con" action="">
+                <div class="item1">
+                    <label for="">Titre du problème *</label>
+                    <input id="type_problem" class="input_fram" type="text" placeholder="Connexion Wi-Fi instable">
+                </div>
+                <div class="item2">
+                    <label for="">Catégorie *</label>
+                    <select id="Catégorie" class="input_fram" name="" id="">
+                        <option value="">Sélectionnez...</option>
+                        <option value="Matériel">Matériel</option>
+                        <option value="Logiciel">Logiciel</option>
+                        <option value="Réseau">Réseau</option>
+                    </select>
+                </div>
+                <div class="item3">
+                    <label for="">Priorité *</label>
+                    <select id="Priorité" class="input_fram" name="" id="">
+                        <option value="">Sélectionnez...</option>
+                        <option value="Basse">Basse</option>
+                        <option value="Normale">Normale</option>
+                        <option value="Haute">Haute</option>
+                    </select>
+                </div>
+                <div class="item4">
+                    <label for="">Description *</label>
+                    <input id="problem_desc" class="input_fram_desc" type="text"
+                        placeholder="Décrivez votre problème...">
+                </div>
+                <div class="item5">
+                    <button id="btn_submit" type="submit">＋ Ajouter la demande</button>
+                </div>
+            </form>
+
+        </section>
+    </main>
+    <section class="demandes">
+        <div class="title">
+            <h2>Liste des demandes</h2>
+            <p id="conter">0 demandes</p>
+        </div>
+        <div id="list_demandes" class="carte_demandes"></div>
+
+    </section>
+
+    <script src="javascript/js.js"></script>
+</body>
+
+</html>
