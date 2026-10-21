@@ -115,10 +115,9 @@ btn_submit.addEventListener('click', (event) => {
         demand_edit.Catégorie = Catégorie.value;
         demand_edit.Priorité = Priorité.value;
         edite_stuats = null;
-        form.reset;
-
     }
     localStorage.setItem("demands", JSON.stringify(demands));
     show_demandes();
+    form.reset();
 }
 )
