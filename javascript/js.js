@@ -2,32 +2,46 @@ const type_problem = document.getElementById("type_problem");
 const problem_desc = document.getElementById("problem_desc");
 const Catégorie = document.getElementById("Catégorie");
 const Priorité = document.getElementById("Priorité");
+const form = document.querySelector("form");
+
 const btn_submit = document.getElementById("btn_submit");
 
 const conter  = document.getElementById("conter");
 const list_demandes = document.getElementById("list_demandes");
-
-const demands = [];
 let conter_num = 0; 
 
+let demands = [];
+
+// check the localstorge if any data store and display it
+if (localStorage.getItem("demands")){
+    demands = JSON.parse(localStorage.getItem("demands"));
+    show_demandes();
+
+}
 
 
 btn_submit.addEventListener('click', ( event ) =>{
     event.preventDefault();
-    add_demande();
-    show_demandes();
+    if (type_problem.value === "" || problem_desc.value === "" || Catégorie.value === "" || Priorité.value === ""){
+        alert("Veuillez remplir tous les champs obligatoires !");
+        return;
+    }
+    else{
+        add_demande();
+        show_demandes();
+    }
 }
 )
 
 function show_demandes() {
     list_demandes.innerHTML = "";
+    conter.textContent = demands.length + " demandes";
     if (demands.length === 0) {
         return
     }
+
     else {
         demands.forEach((demands) => {
-                conter.textContent = conter_num + " demandes";
-                console.log(demands.length)
             const html_carte = `
                 <article  class="carte">
                 <div class="top_carte">
@@ -38,16 +52,16 @@ function show_demandes() {
                 <p class="problem_desc">${demands.problem_desc}</p>
                 <div class="type_holder">
                 <p class="Catégorie ">${demands.Catégorie}</p>
-                <p class="Priorité ">${demands.Priorité}</p>
+                <p class="Priorité ${demands.Priorité} ">${demands.Priorité}</p>
                 </div>
                 <hr>
                 <div class="bottm_carte">
-                <a class="modifer_btn" href="">✎ Modifier</a>
-                <a class="supprimer_btn" href="">♜ Supprimer</a>
+                <a class="modifer_btn" onclick="">✎ Modifier</a>
+                <a class="supprimer_btn" onclick="delete_demande(${demands.id})">♜ Supprimer</a>
                 </div>
                 </article >`
 
-            list_demandes.innerHTML += html_carte
+            list_demandes.innerHTML += html_carte ;
         })
     }
 }
@@ -59,41 +73,20 @@ function add_demande() {
     demand.problem_desc = problem_desc.value;
     demand.Catégorie = Catégorie.value;
     demand.Priorité = Priorité.value;
-
+    demand.id = Date.now();
     demands.push(demand);
+    localStorage.setItem("demands" , JSON.stringify(demands));
     conter_num++;
-    // console.log(demands);
+    form.reset();
 
 }
 
-function delet_demandes() {
-
+function delete_demande(id) {
+    demands = demands.filter(item => item.id !== id);
+    localStorage.setItem("demands" , JSON.stringify(demands));
+    show_demandes();
 }
 
 function edit_demandes() {
 
 }
-
-
-
-
-
-
-// const html_carte = `
-//     <div class="carte">
-//     <div class="top_carte">
-//     <p class="cate_side_icon">⌁</p>
-//     <p class="text_side_icon">HD-001</p>
-//     </div>
-//     <h3 class="type_problem">${type_problem}</h3>
-//     <p class="problem_desc">${problem_desc}</p>
-//     <div class="type_holder">
-//     <p class="Catégorie ">${Catégorie}</p>
-//     <p class="Priorité ">${Priorité}</p>
-//     </div>
-//     <hr>
-//     <div class="bottm_carte">
-//     <a class="modifer_btn" href="">✎ Modifier</a>
-//     <a class="supprimer_btn" href="">♜ Supprimer</a>
-//     </div>
-//     </div>`

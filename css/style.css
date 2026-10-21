@@ -153,14 +153,29 @@ form button {
     display: flex;
     align-items: center;
     padding-left: 5px;
-    background-color: #FFF0E8;
-    color: #BA6444 ;
+    /* background-color: #FFF0E8; */
+    /* color: #BA6444 ; */
     width: 83px;
     height: 24px;
     font-size: 14px;
     border-radius: 12px;
     font-weight:700 ;
 }
+.Basse{
+    background-color: #E8F6EE;
+    color: #388867 ;
+}
+
+.Normale{
+    background-color: #FFF5DF;
+    color: #A67A2B ;
+}
+
+.Haute{
+    background-color: #FFF0E8 ;
+    color: #BA6444 ;
+}
+
 .bottm_carte{
     display: flex;
     justify-content: end;
@@ -172,10 +187,12 @@ form button {
     text-decoration: none;
     font-weight: 700;
     font-size: 15px;
+    cursor: pointer;
 }
 .supprimer_btn {
     color: #CC626A;
     text-decoration: none;
     font-weight: 700;
     font-size: 15px;
+    cursor: pointer;
 }
