@@ -11,6 +11,18 @@ body {
     margin: 0;
     background-color: #F7F8FA;
     font-family: "Inter", sans-serif;
+
+    
+}
+
+.lighter_text{
+    font-weight: 400;
+    color: #8A95A4;
+}
+.main_text{
+    font-weight: 700;
+    color: #243143;
+    font-style: bold;
 }
 
 
@@ -75,12 +87,17 @@ main section form div {
     height: 40px;
     border-radius: 7px;
     border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 10px;
 }
+
 
 .input_fram_desc {
     height: 55px;
     border-radius: 7px;
     border: 1px solid black;
+    padding-left: 10px ;
+    padding-right: 10px;
 }
 
 form button {
@@ -101,11 +118,15 @@ form button {
     justify-content: space-between;
     align-items: center;
 }
-
+#conter{
+    border-radius: 20px;
+    padding:5px 10px;
+    background-color: #EBEFF4   ;
+    color: #5C697B;
+}
 .carte_demandes{
     display: grid;
     gap: 25px;
-    /* margin-bottom: 10px; */
     grid-template-columns: 1fr;
 }
 .carte{
@@ -132,6 +153,9 @@ form button {
 }
 .text_side_icon{
     color: #99A4B2;
+}
+.problem_desc{
+    font-size: 11px;
 }
 .type_holder{
     display: flex;

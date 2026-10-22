@@ -11,27 +11,16 @@ const list_demandes = document.getElementById("list_demandes");
 
 let conter_num = 0;
 let demands = [];
-let edite_stuats = null;
+let demand_edit;
+let edite_stuats = 0;
+
 
 // check the localstorge if any data store and display it
 if (localStorage.getItem("demands")) {
     demands = JSON.parse(localStorage.getItem("demands"));
     show_demandes();
 }
-
-
-btn_submit.addEventListener('click', (event) => {
-    event.preventDefault();
-    if (type_problem.value === "" || problem_desc.value === "" || Catégorie.value === "" || Priorité.value === "") {
-        alert("Veuillez remplir tous les champs obligatoires !");
-        return;
-    }
-    else if (edite_stuats == null) {
-        add_demande();
-        show_demandes();
-    }
-}
-)
+let tickt_id = demands.length === 0 ? 1 : demands[demands.length - 1].tickt_id + 1 
 
 function show_demandes() {
     list_demandes.innerHTML = "";
@@ -45,19 +34,19 @@ function show_demandes() {
             const html_carte = `
                 <article  class="carte">
                 <div class="top_carte">
-                <p class="cate_side_icon">⌁</p>
-                <p class="text_side_icon">HD-001</p>
+                <p class="cate_side_icon">${demands.Catégorie == "Matériel"? "+" : demands.Catégorie == "Logiciel"? "-" : "*" } </p>
+                <p class="text_side_icon">HD-${String(demands.tickt_id).padStart(3 ,"0")}</p>
                 </div>
                 <h3 class="type_problem">${demands.type_problem}</h3>
-                <p class="problem_desc">${demands.problem_desc}</p>
+                <p class="lighter_text problem_desc">${demands.problem_desc}</p>
                 <div class="type_holder">
                 <p class="Catégorie ">${demands.Catégorie}</p>
                 <p class="Priorité ${demands.Priorité} ">${demands.Priorité}</p>
                 </div>
                 <hr>
                 <div class="bottm_carte">
-                <a class="modifer_btn" onclick="edit_demandes(${demands.id})">✎ Modifier</a>
-                <a class="supprimer_btn" onclick="delete_demande(${demands.id})">♜ Supprimer</a>
+                <a class="modifer_btn" onclick="edit_demandes(${demands.tickt_id})">✎ Modifier</a>
+                <a class="supprimer_btn" onclick="delete_demande(${demands.tickt_id})">♜ Supprimer</a>
                 </div>
                 </article >`
 
@@ -65,7 +54,6 @@ function show_demandes() {
         })
     }
 }
-
 function add_demande() {
     const demand = {};
 
@@ -73,24 +61,22 @@ function add_demande() {
     demand.problem_desc = problem_desc.value;
     demand.Catégorie = Catégorie.value;
     demand.Priorité = Priorité.value;
-    demand.id = Date.now();
+    demand.tickt_id = tickt_id++;
     demands.push(demand);
-    localStorage.setItem("demands", JSON.stringify(demands));
     conter_num++;
-    form.reset();
-
 }
 
 function delete_demande(id) {
-    demands = demands.filter(item => item.id !== id);
+    demands = demands.filter(item => item.tickt_id !== id);
     localStorage.setItem("demands", JSON.stringify(demands));
     show_demandes();
 }
 
 function edit_demandes(id) {
     edite_stuats = id;
+    btn_submit.textContent = "modifier la demande"
 
-    let demand_edit = demands.find(item => item.id === id);
+    demand_edit = demands.find(item => item.tickt_id === id);
 
     if (demand_edit) {
         type_problem.value = demand_edit.type_problem;
@@ -103,19 +89,28 @@ function edit_demandes(id) {
 btn_submit.addEventListener('click', (event) => {
     event.preventDefault();
 
-    let demand_edit = demands.find(item => item.id === edite_stuats);
-
-    if (edite_stuats !== null) {
-        if (type_problem.value === "" || problem_desc.value === "" || Catégorie.value === "" || Priorité.value === "") {
+    if (type_problem.value === "" || problem_desc.value === "" || Catégorie.value === "" || Priorité.value === "") {
         alert("Veuillez remplir tous les champs obligatoires !");
         return;
     }
+    else if (edite_stuats !== 0) {
+        if(!confirm("Êtes-vous sûr de vouloir modifier cette demande ?"))
+            return
+        
         demand_edit.type_problem = type_problem.value;
         demand_edit.problem_desc = problem_desc.value;
         demand_edit.Catégorie = Catégorie.value;
         demand_edit.Priorité = Priorité.value;
-        edite_stuats = null;
-    }
+        btn_submit.textContent  = "＋ Ajouter la demande"
+        edite_stuats = 0;
+        }
+    else if (edite_stuats == 0) {
+        if(!confirm("Êtes-vous sûr de vouloir ajouter cette demande ?"))
+            return
+        add_demande();
+    }   
+    
+
     localStorage.setItem("demands", JSON.stringify(demands));
     show_demandes();
     form.reset();
