@@ -323,7 +323,7 @@ Ce projet constitue une première étape vers le développement d'applications W
 
 ## 👨‍💻 Auteur
 
-**Développé par :** [Votre nom]
+**Développé par :** [ayoub dehbi]
 
 **Formation :** YouCode
 
