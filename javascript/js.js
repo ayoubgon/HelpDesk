@@ -4,11 +4,15 @@ const Catégorie = document.getElementById("Catégorie");
 const Priorité = document.getElementById("Priorité");
 const form = document.querySelector("form");
 
+const search_bar = document.getElementById("search_bar")
+const search_btn = document.getElementById("search_btn")
+
 const btn_submit = document.getElementById("btn_submit");
 
 const conter = document.getElementById("conter");
 const list_demandes = document.getElementById("list_demandes");
 
+let search_arr 
 let conter_num = 0;
 let demands = [];
 let demand_edit;
@@ -18,11 +22,11 @@ let edite_stuats = 0;
 // check the localstorge if any data store and display it
 if (localStorage.getItem("demands")) {
     demands = JSON.parse(localStorage.getItem("demands"));
-    show_demandes();
+    show_demandes(demands);
 }
 let tickt_id = demands.length === 0 ? 1 : demands[demands.length - 1].tickt_id + 1 
 
-function show_demandes() {
+function show_demandes(demands) {
     list_demandes.innerHTML = "";
     conter.textContent = demands.length + " demandes";
     if (demands.length === 0) {
@@ -71,7 +75,7 @@ function delete_demande(id) {
             return
     demands = demands.filter(item => item.tickt_id !== id);
     localStorage.setItem("demands", JSON.stringify(demands));
-    show_demandes();
+    show_demandes(demands);
 }
 
 function edit_demandes(id) {
@@ -109,12 +113,22 @@ btn_submit.addEventListener('click', (event) => {
     else if (edite_stuats == 0) {
         if(!confirm("Êtes-vous sûr de vouloir ajouter cette demande ?"))
             return
-        add_demande();
+        add_demande(demands);
     }   
     
 
     localStorage.setItem("demands", JSON.stringify(demands));
-    show_demandes();
+    show_demandes(demands);
     form.reset();
 }
 )
+search_btn.addEventListener('click',(event) =>{
+    event.preventDefault();
+    if (search_bar.value == "")
+        show_demandes(demands)
+    else{
+        search_arr = demands.filter(item => item.type_problem == search_bar.value );
+        console.log(search_arr);
+        show_demandes(search_arr);
+    }
+})

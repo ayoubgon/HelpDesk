@@ -90,6 +90,12 @@ main section form div {
     padding-left: 10px;
     padding-right: 10px;
 }
+#Catégorie{
+    cursor: pointer;
+}
+#Priorité{
+    cursor: pointer;
+}
 
 
 .input_fram_desc {
@@ -105,7 +111,37 @@ form button {
     height: 40px;
     background-color: #252F3E; 
     color: white;
+    cursor: pointer;
 }
+/* search bar */
+
+.search_area{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+#search_bar{
+    width: 70%;
+    height: 30px;
+    border-radius: 7px;
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+#search_btn{
+    height: 34px;
+    border-radius: 7px;
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #252F3E; 
+    color: white;
+    cursor: pointer;
+
+}
+
 
 
 /* demandes */

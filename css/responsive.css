@@ -1,5 +1,6 @@
 @media (min-width: 768px) {
 
+
     .btn_homeborber {
         display: none;
     }
@@ -12,10 +13,13 @@
             "item_3 item_4"
             ".      item_5";
     }
-    .carte_demandes{
-    grid-template-columns: 1fr 1fr;
-}
 
+    .carte_demandes {
+        grid-template-columns: 1fr 1fr;
+    }
+    #search_bar {
+        width: 500px;
+    }
 
 }
 
@@ -30,8 +34,12 @@
             ".      .      item_5";
     }
 
-        .carte_demandes{
-    grid-template-columns: 1fr 1fr 1fr;
-}
+    .carte_demandes {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    #search_bar {
+        width: 500px;
+    }
 
 }
