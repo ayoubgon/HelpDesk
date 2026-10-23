@@ -160,6 +160,21 @@ form button {
     background-color: #EBEFF4   ;
     color: #5C697B;
 }
+
+#filter{
+    cursor: pointer;
+    border-radius: 6px;
+    padding:5px 10px;
+    margin-bottom: 10px;
+
+    /* display: flex; */
+    justify-content: flex-end;
+    background-color: #EBEFF4   ;
+    color: #5C697B;
+
+
+}
+
 .carte_demandes{
     display: grid;
     gap: 25px;

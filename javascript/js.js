@@ -4,6 +4,8 @@ const Catégorie = document.getElementById("Catégorie");
 const Priorité = document.getElementById("Priorité");
 const form = document.querySelector("form");
 
+const filter = document.getElementById("filter")
+
 const search_bar = document.getElementById("search_bar")
 const search_btn = document.getElementById("search_btn")
 
@@ -12,19 +14,39 @@ const btn_submit = document.getElementById("btn_submit");
 const conter = document.getElementById("conter");
 const list_demandes = document.getElementById("list_demandes");
 
-let search_arr 
+let search_arr;
+let filtrage;
+
 let conter_num = 0;
-let demands = [];
+let demands = [{
+    "type_problem": "Connexion Wi-Fi instable",
+    "problem_desc": "Le réseau se déconnecte régulièrement.",
+    "Catégorie": "Réseau",
+    "Priorité": "Haute",
+    "tickt_id": 1
+}, {
+    "type_problem": "Installation d’un logiciel",
+    "problem_desc": "Installer un logiciel sur le poste.",
+    "Catégorie": "Logiciel",
+    "Priorité": "Normale",
+    "tickt_id": 2
+}, {
+    "type_problem": "Clavier défectueux",
+    "problem_desc": "Certaines touches ne fonctionnent plus.",
+    "Catégorie": "Matériel",
+    "Priorité": "Basse",
+    "tickt_id": 3
+}];
+
 let demand_edit;
 let edite_stuats = 0;
-
 
 // check the localstorge if any data store and display it
 if (localStorage.getItem("demands")) {
     demands = JSON.parse(localStorage.getItem("demands"));
-    show_demandes(demands);
 }
-let tickt_id = demands.length === 0 ? 1 : demands[demands.length - 1].tickt_id + 1 
+show_demandes(demands);
+let tickt_id = demands.length === 0 ? 1 : demands[demands.length - 1].tickt_id + 1
 
 function show_demandes(demands) {
     list_demandes.innerHTML = "";
@@ -38,8 +60,8 @@ function show_demandes(demands) {
             const html_carte = `
                 <article  class="carte">
                 <div class="top_carte">
-                <p class="cate_side_icon">${demands.Catégorie == "Matériel"? "+" : demands.Catégorie == "Logiciel"? "-" : "*" } </p>
-                <p class="text_side_icon">HD-${String(demands.tickt_id).padStart(3 ,"0")}</p>
+                <p class="cate_side_icon">${demands.Catégorie == "Matériel" ? "+" : demands.Catégorie == "Logiciel" ? "-" : "*"} </p>
+                <p class="text_side_icon">HD-${String(demands.tickt_id).padStart(3, "0")}</p>
                 </div>
                 <h3 class="type_problem">${demands.type_problem}</h3>
                 <p class="lighter_text problem_desc">${demands.problem_desc}</p>
@@ -57,6 +79,8 @@ function show_demandes(demands) {
             list_demandes.innerHTML += html_carte;
         })
     }
+    console.log(demands);
+
 }
 function add_demande() {
     const demand = {};
@@ -71,8 +95,8 @@ function add_demande() {
 }
 
 function delete_demande(id) {
-    if(!confirm("Êtes-vous sûr de vouloir Supprimer cette demande ?"))
-            return
+    if (!confirm("Êtes-vous sûr de vouloir Supprimer cette demande ?"))
+        return
     demands = demands.filter(item => item.tickt_id !== id);
     localStorage.setItem("demands", JSON.stringify(demands));
     show_demandes(demands);
@@ -100,35 +124,76 @@ btn_submit.addEventListener('click', (event) => {
         return;
     }
     else if (edite_stuats !== 0) {
-        if(!confirm("Êtes-vous sûr de vouloir modifier cette demande ?"))
+        if (!confirm("Êtes-vous sûr de vouloir modifier cette demande ?"))
             return
-        
+
         demand_edit.type_problem = type_problem.value;
         demand_edit.problem_desc = problem_desc.value;
         demand_edit.Catégorie = Catégorie.value;
         demand_edit.Priorité = Priorité.value;
-        btn_submit.textContent  = "＋ Ajouter la demande"
+        btn_submit.textContent = "＋ Ajouter la demande"
         edite_stuats = 0;
-        }
+    }
     else if (edite_stuats == 0) {
-        if(!confirm("Êtes-vous sûr de vouloir ajouter cette demande ?"))
+        if (!confirm("Êtes-vous sûr de vouloir ajouter cette demande ?"))
             return
         add_demande(demands);
-    }   
-    
+    }
+
 
     localStorage.setItem("demands", JSON.stringify(demands));
     show_demandes(demands);
+    filter.value = 1
     form.reset();
 }
 )
-search_btn.addEventListener('click',(event) =>{
+search_btn.addEventListener('click', (event) => {
+    filter.value = 1
+
     event.preventDefault();
     if (search_bar.value == "")
         show_demandes(demands)
-    else{
-        search_arr = demands.filter(item => item.type_problem == search_bar.value );
+    else {
+        search_arr = demands.filter(item => item.type_problem == search_bar.value);
         console.log(search_arr);
         show_demandes(search_arr);
+
     }
 })
+
+filter.addEventListener("change", () => {
+    switch (filter.value) {
+        case "Basse":
+            filtrage = demands.filter(item => item.Priorité == "Basse")
+            show_demandes(filtrage)
+
+            break;
+        case "Normale":
+            filtrage = demands.filter(item => item.Priorité == "Normale")
+            show_demandes(filtrage)
+            break;
+        case "Haute":
+            filtrage = demands.filter(item => item.Priorité == "Haute")
+            show_demandes(filtrage)
+            break;
+        case "Matériel":
+            filtrage = demands.filter(item => item.Catégorie == "Matériel")
+            show_demandes(filtrage)
+            break;
+        case "Logiciel":
+            filtrage = demands.filter(item => item.Catégorie == "Logiciel")
+            show_demandes(filtrage)
+            break;
+        case "Réseau":
+            filtrage = demands.filter(item => item.Catégorie == "Réseau")
+            show_demandes(filtrage)
+            break;
+
+        default: show_demandes(demands)
+            break;
+    }
+
+
+
+}
+)
