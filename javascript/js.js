@@ -67,6 +67,8 @@ function add_demande() {
 }
 
 function delete_demande(id) {
+    if(!confirm("Êtes-vous sûr de vouloir Supprimer cette demande ?"))
+            return
     demands = demands.filter(item => item.tickt_id !== id);
     localStorage.setItem("demands", JSON.stringify(demands));
     show_demandes();
